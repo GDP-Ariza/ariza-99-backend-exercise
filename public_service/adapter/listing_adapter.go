@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"os"
 	"public_service/model"
 	"strconv"
 	"time"
@@ -22,11 +23,16 @@ type listingAdapter struct {
 }
 
 func NewListingAdapter() ListingAdapter {
+	baseURL := os.Getenv("LISTING_SERVICE_URL")
+	if baseURL == "" {
+		baseURL = "http://localhost:6000" // Default listing service URL
+	}
+
 	return &listingAdapter{
 		httpClient: &http.Client{
 			Timeout: 30 * time.Second,
 		},
-		baseURL: "http://localhost:6000",
+		baseURL: baseURL,
 	}
 }
 

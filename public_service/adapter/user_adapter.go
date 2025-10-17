@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"os"
 	"public_service/model"
 	"time"
 )
@@ -21,11 +22,16 @@ type userAdapter struct {
 }
 
 func NewUserAdapter() UserAdapter {
+	baseURL := os.Getenv("USER_SERVICE_URL")
+	if baseURL == "" {
+		baseURL = "http://localhost:7001" // Default user service URL
+	}
+
 	return &userAdapter{
 		httpClient: &http.Client{
 			Timeout: 30 * time.Second,
 		},
-		baseURL: "http://localhost:7001",
+		baseURL: baseURL,
 	}
 }
 

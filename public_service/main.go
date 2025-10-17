@@ -18,7 +18,7 @@ func main() {
 	svc := service.NewPublicService(userAdapter, listingAdapter)
 	h := handler.NewUserHandler(svc)
 
-	r.GET("/public-api/ping", h.Ping)
+	r.GET("/ping", h.Ping)
 	r.GET("/public-api/listings", h.Listings)
 	r.POST("/public-api/listings", h.CreateListing)
 	r.POST("/public-api/users", h.CreateUser)
