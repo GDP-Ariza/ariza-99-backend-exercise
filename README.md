@@ -143,7 +143,7 @@ go build -o public_service
 curl http://localhost:7001/ping
 
 # Public service health check
-curl http://localhost:7002/public-api/ping
+curl http://localhost:7002/ping
 ```
 
 ## Configuration
